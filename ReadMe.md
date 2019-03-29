@@ -13,7 +13,5 @@
 
 ### Things to do:
 * SearchAppContext.cs has the path to the SQL server. move to config file
-* Need to update CORS policy so front/back end can talk with each other
 * include tests in repo
-* add "please wait" loading ability to front-end
 * add async where needed in API
