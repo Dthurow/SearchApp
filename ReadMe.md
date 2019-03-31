@@ -24,4 +24,4 @@ The SearchFrontEnd will automatically open up the search page in your default br
 1. include the ability for end users to add new person records to search
 1. add ability to use wildcard in search
 1. change ajax call in search.vue to use passed in URL from config file instead of hardcoding it
-
+1. For dealing with more data: add caching of search results, multi-thread pieces of search query
