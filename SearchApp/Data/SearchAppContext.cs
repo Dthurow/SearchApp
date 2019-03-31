@@ -15,6 +15,7 @@ namespace SearchApp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True");
         }
     }
@@ -24,5 +25,7 @@ namespace SearchApp.Data
         DbSet<Person> People { get; set; }
         DbSet<Interest> Interests { get; set; }
         DbSet<Address> Addresses { get; set; }
+
+        int SaveChanges();
     }
 }

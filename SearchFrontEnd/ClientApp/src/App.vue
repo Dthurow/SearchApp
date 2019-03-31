@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <h4>Person Search Application</h4>
+    <p>
+      Search for a person of interest by using a piece of their first or last name.
+      Some suggested searches: Peggy, ar, laura
+    </p>
     <router-view/>
   </div>
 </template>

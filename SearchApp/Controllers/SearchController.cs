@@ -4,6 +4,7 @@ using SearchApp.Data;
 using SearchApp.Model;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SearchApp.Controllers
 {
@@ -19,7 +20,12 @@ namespace SearchApp.Controllers
             _context = context;
         }
 
-        // GET: api/Search
+       /// <summary>
+       /// gets all person records in database
+       /// transforms them into search results
+       /// not something to keep if the database actually gets large
+       /// </summary>
+       /// <returns></returns>
         [HttpGet]
         public JsonResult Get()
         {
@@ -37,14 +43,31 @@ namespace SearchApp.Controllers
         }
 
 
-
+        /// <summary>
+        /// Given a string, returns list of SearchItems
+        /// that include all people who contain that search string in their
+        /// last or first name
+        /// Only support alphabetical searches, no unicode or wildcards
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>list of searchItems, null if no found matches or invalid searchString</returns>
         [HttpGet]
         [Route("getsubset/{searchString}")]
         public JsonResult GetSubset(string searchString)
         {
             List<SearchItem> results = new List<SearchItem>();
+           
+            results = ResultsFromSearch(searchString);
+            System.Threading.Thread.Sleep(2000);
+            return new JsonResult(new { result = results });
+        }
 
-            if (!string.IsNullOrEmpty(searchString))
+        public List<SearchItem> ResultsFromSearch(string searchString)
+        {
+            List<SearchItem> results = new List<SearchItem>();
+
+        //validate input
+        if (!string.IsNullOrEmpty(searchString) && Regex.IsMatch(searchString, @"[a-zA-Z]+"))
             {
                 var query = from person in _context.People.AsNoTracking().Include(p => p.Addresses).Include(p => p.Interests)
                             where person.FirstName.ToLower().Contains(searchString.ToLower()) || person.LastName.ToLower().Contains(searchString.ToLower())
@@ -52,18 +75,15 @@ namespace SearchApp.Controllers
 
                 if (query != null && query.Count() > 0)
                 {
-                    foreach(var p in query)
+                    foreach (var p in query)
                     {
                         results.Add(new SearchItem() { FirstName = p.FirstName, LastName = p.LastName, ProfilePicture = p.PersonPictureFileName, Addresses = getSearchAddresses(p.Addresses), Age = p.Age, Interests = getInterests(p.Interests) });
-                    
+
                     }
                 }
             }
-
-            System.Threading.Thread.Sleep(2000);
-            return new JsonResult(new { result = results });
+            return results;
         }
-
 
         #region private helper methods
         private List<SearchItemAddress> getSearchAddresses(ICollection<Address> addresses)

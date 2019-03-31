@@ -35,7 +35,7 @@
 
 
     </div>
-    <div v-if="searchResults.length == 0 && !displayPleaseWait">
+    <div v-if="searchResults.length == 0 && !displayPleaseWait && !initialLoad" style="margin-top:10px;">
       <b>No Results Found...</b>
     </div>
     <div v-if="displayPleaseWait" class="pleaseWait">
@@ -53,7 +53,8 @@ export default {
     return {
       searchResults: [],
       searchquery: '',
-      displayPleaseWait: false
+      displayPleaseWait: false,
+      initialLoad : true
     }
   },
   created () {
@@ -61,6 +62,7 @@ export default {
   },
   methods: {
     fetchResults: function () {
+      this.initialLoad = false;
       console.log("searchquery is: '" + this.searchquery + "'")
       this.displayPleaseWait = true
       this.searchResults = []

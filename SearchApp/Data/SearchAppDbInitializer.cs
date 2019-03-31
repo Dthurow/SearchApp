@@ -4,26 +4,6 @@ namespace SearchApp.Data
 {
     public static class SearchAppDbInitializer
     {
-        public static void Initialize(SearchAppContext context)
-        {
-            // Look for any students.
-            if (context.People.Any())
-            {
-                return;   // DB has been seeded
-            }
-
-            addPeople(context);
-            context.SaveChanges();
-
-            addAddresses(context);
-            context.SaveChanges();
-
-            addInterests(context);
-            context.SaveChanges();
-
-
-        }
-
         public static void Initialize(ISearchAppContext context)
         {
             // Look for any students.
@@ -33,8 +13,13 @@ namespace SearchApp.Data
             }
 
             addPeople(context);
+            context.SaveChanges();
+
             addAddresses(context);
+            context.SaveChanges();
+
             addInterests(context);
+            context.SaveChanges();
 
 
         }

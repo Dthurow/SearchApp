@@ -5,7 +5,15 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchApp", "SearchApp\SearchApp.csproj", "{5B9231D8-9750-41EB-BDB9-21C06FC0FE1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchFrontEnd", "SearchFrontEnd\SearchFrontEnd.csproj", "{3E482B38-06CC-46C3-9760-18E7553B09D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchFrontEnd", "SearchFrontEnd\SearchFrontEnd.csproj", "{3E482B38-06CC-46C3-9760-18E7553B09D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B9231D8-9750-41EB-BDB9-21C06FC0FE1C} = {5B9231D8-9750-41EB-BDB9-21C06FC0FE1C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchApp.Tests", "SearchApp.Tests\SearchApp.Tests.csproj", "{4DB2F464-9A23-4F7C-9BDC-6F10378DFBD3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B9231D8-9750-41EB-BDB9-21C06FC0FE1C} = {5B9231D8-9750-41EB-BDB9-21C06FC0FE1C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{3E482B38-06CC-46C3-9760-18E7553B09D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E482B38-06CC-46C3-9760-18E7553B09D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E482B38-06CC-46C3-9760-18E7553B09D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB2F464-9A23-4F7C-9BDC-6F10378DFBD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB2F464-9A23-4F7C-9BDC-6F10378DFBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB2F464-9A23-4F7C-9BDC-6F10378DFBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB2F464-9A23-4F7C-9BDC-6F10378DFBD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

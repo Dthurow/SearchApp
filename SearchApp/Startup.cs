@@ -27,7 +27,7 @@ namespace SearchApp
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
-
+            services.AddScoped<Data.ISearchAppContext, Data.SearchAppContext>();
             services.AddDbContext<SearchApp.Data.SearchAppContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
