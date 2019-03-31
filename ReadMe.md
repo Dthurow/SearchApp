@@ -8,6 +8,8 @@
 This will start IIS Express for both the SearchApp API and the SearchFrontEnd
 The SearchFrontEnd will automatically open up the search page in your default browser
 
+1. Open SearchApp solution in visual studio and build with ctrl+b
+    1. this will get the NuGet packages, including the MicrosoftEntityFrameworkCore, which you will use to auto-generate the SQL database from the classes in the Data folder
 1. Open the command line inside the SearchApp\SearchApp folder
 1. run "dotnet ef database update" to create tables in the master db on (localdb)\MSSQLLocalDB (tables will be seeded on initial run of SearchApp\SearchApp API)
 1. Make sure visual studio has "Multiple Startup Projects" selected for the Startup Project, and click "Start"
@@ -21,5 +23,5 @@ The SearchFrontEnd will automatically open up the search page in your default br
 1. move sql connection string into the config file and pull from there instead of hardcoding it
 1. include the ability for end users to add new person records to search
 1. add ability to use wildcard in search
-1. change ajax call in search use passed in URL from config file
+1. change ajax call in search.vue to use passed in URL from config file instead of hardcoding it
 
