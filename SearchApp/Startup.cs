@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace SearchApp
 {
@@ -28,7 +29,9 @@ namespace SearchApp
                     .AllowCredentials());
             });
             services.AddScoped<Data.ISearchAppContext, Data.SearchAppContext>();
-            services.AddDbContext<SearchApp.Data.SearchAppContext>();
+            services.AddDbContext<SearchApp.Data.SearchAppContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SearchAppContext"))
+                    );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             

@@ -73,7 +73,9 @@ export default {
         }.bind(this))
         .catch(function (error) {
           console.log(error)
-        })
+          alert("There was an error retrieving the alerts. Please try again later :(")
+          this.displayPleaseWait = false
+        }).bind(this)
     }
   }
 }

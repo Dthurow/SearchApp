@@ -23,7 +23,7 @@ namespace SearchApp
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<SearchAppContext>();
+                    var context = services.GetRequiredService<ISearchAppContext>();
                     SearchAppDbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
